@@ -1,5 +1,7 @@
 if ( .Platform$OS.type == 'windows' ) memory.limit( 256000 )
 
+options("lodown.cachaca.savecache"=FALSE)
+
 library(lodown)
 lodown( "mlces" , output_dir = file.path( getwd() ) )
 mlces_df <- readRDS( file.path( getwd() , "mcles1997.rds" ) )
