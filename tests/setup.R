@@ -4,7 +4,7 @@ options("lodown.cachaca.savecache"=FALSE)
 
 library(lodown)
 lodown( "mlces" , output_dir = file.path( getwd() ) )
-mlces_df <- readRDS( file.path( getwd() , "mcles1997.rds" ) )
+mlces_df <- readRDS( file.path( getwd() , "mlces1997.rds" ) )
 
 mlces_df <- 
 	transform( 
