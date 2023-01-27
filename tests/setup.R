@@ -78,7 +78,7 @@ glm_result <-
 
 summary( glm_result )
 library(dplyr)
-mlces_tbl <- tbl_df( mlces_df )
+mlces_tbl <- as_tibble( mlces_df )
 mlces_tbl %>%
 	summarize( mean = mean( totpdchg ) )
 
