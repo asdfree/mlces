@@ -1,7 +1,21 @@
 # skewed by black swan tails
 # means, medians sing adieu
 # claims distribution
-mlces_df <- readRDS( file.path( path.expand( "~" ) , "MLCES" , "mlces1997.rds" ) )
+library(haven)
+
+tf <- tempfile()
+
+this_url <-
+	"https://www.soa.org/Files/Research/1999.zip"
+
+download.file( this_url , tf , mode = 'wb' )
+
+unzipped_files <- unzip( tf , exdir = tempdir() )
+
+mlces_df <- read.csv( unzipped_files )
+
+names( mlces_df ) <- tolower( names( mlces_df ) )
+
 
 mlces_df <- 
 	transform( 
