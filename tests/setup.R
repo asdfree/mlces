@@ -1,8 +1,6 @@
 # skewed by black swan tails
 # means, medians sing adieu
 # claims distribution
-library(haven)
-
 tf <- tempfile()
 
 this_url <-
@@ -88,3 +86,14 @@ mlces_tbl %>%
 mlces_tbl %>%
 	group_by( claimant_relationship_to_policyholder ) %>%
 	summarize( mean = mean( totpdchg ) )
+# $0 deductible
+stopifnot( nrow( mlces_df ) == 1591738 )
+
+# $1,000 deductible
+charges_above_1000 <- subset( mlces_df , totpdchg > 1000 )
+stopifnot( nrow( charges_above_1000 ) == 402550 )
+# $0 deductible
+stopifnot( round( sum( mlces_df[ , 'totpdchg' ] ) , 0 ) == 2599356658 )
+
+# $1,000 deductible
+stopifnot( round( sum( charges_above_1000[ , 'totpdchg' ] - 1000 ) , 0 ) == 1883768786 )
