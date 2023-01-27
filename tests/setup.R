@@ -3,8 +3,7 @@
 # claims distribution
 tf <- tempfile()
 
-this_url <-
-	"https://www.soa.org/Files/Research/1999.zip"
+this_url <-	"https://www.soa.org/Files/Research/1999.zip"
 
 download.file( this_url , tf , mode = 'wb' )
 
@@ -18,6 +17,8 @@ names( mlces_df ) <- tolower( names( mlces_df ) )
 mlces_df <- 
 	transform( 
 		mlces_df , 
+		
+		one = 1 ,
 		
 		claimant_relationship_to_policyholder =
 			ifelse( relation == "E" , "covered employee" ,
