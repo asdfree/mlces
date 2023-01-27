@@ -7,12 +7,10 @@ this_url <-	"https://www.soa.org/Files/Research/1999.zip"
 
 download.file( this_url , tf , mode = 'wb' )
 
-unzipped_files <- unzip( tf , exdir = tempdir() )
-
-mlces_df <- read.csv( unzipped_files )
+unzipped_file <- unzip( tf , exdir = tempdir() )
+mlces_df <- read.csv( unzipped_file )
 
 names( mlces_df ) <- tolower( names( mlces_df ) )
-
 
 mlces_df <- 
 	transform( 
