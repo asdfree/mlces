@@ -8,9 +8,13 @@ this_url <-	"https://www.soa.org/Files/Research/1999.zip"
 download.file( this_url , tf , mode = 'wb' )
 
 unzipped_file <- unzip( tf , exdir = tempdir() )
+
 mlces_df <- read.csv( unzipped_file )
 
 names( mlces_df ) <- tolower( names( mlces_df ) )
+# mlces_fn <- file.path( path.expand( "~" ) , "MLCES" , "this_file.rds" )
+# saveRDS( mlces_df , file = mlces_fn , compress = FALSE )
+# mlces_df <- readRDS( mlces_fn )
 mlces_df <- 
 	transform( 
 		mlces_df , 
