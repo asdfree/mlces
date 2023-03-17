@@ -80,6 +80,17 @@ glm_result <-
 	)
 
 summary( glm_result )
+# $0 deductible
+stopifnot( nrow( mlces_df ) == 1591738 )
+
+# $1,000 deductible
+mlces_above_1000_df <- subset( mlces_df , totpdchg > 1000 )
+stopifnot( nrow( mlces_above_1000_df ) == 402550 )
+# $0 deductible
+stopifnot( round( sum( mlces_df[ , 'totpdchg' ] ) , 0 ) == 2599356658 )
+
+# $1,000 deductible
+stopifnot( round( sum( mlces_above_1000_df[ , 'totpdchg' ] - 1000 ) , 0 ) == 1883768786 )
 library(dplyr)
 mlces_tbl <- as_tibble( mlces_df )
 mlces_tbl %>%
@@ -108,14 +119,3 @@ dbGetQuery(
 	GROUP BY
 		claimant_relationship_to_policyholder'
 )
-# $0 deductible
-stopifnot( nrow( mlces_df ) == 1591738 )
-
-# $1,000 deductible
-mlces_above_1000_df <- subset( mlces_df , totpdchg > 1000 )
-stopifnot( nrow( mlces_above_1000_df ) == 402550 )
-# $0 deductible
-stopifnot( round( sum( mlces_df[ , 'totpdchg' ] ) , 0 ) == 2599356658 )
-
-# $1,000 deductible
-stopifnot( round( sum( mlces_above_1000_df[ , 'totpdchg' ] - 1000 ) , 0 ) == 1883768786 )
