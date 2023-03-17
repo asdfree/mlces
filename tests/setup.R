@@ -93,6 +93,21 @@ mlces_dt <- data.table( mlces_df )
 mlces_dt[ , mean( totpdchg ) ]
 
 mlces_dt[ , mean( totpdchg ) , by = claimant_relationship_to_policyholder ]
+library(duckdb)
+con <- dbConnect( duckdb::duckdb() , dbdir = 'my-db.duckdb' )
+dbWriteTable( con , 'mlces' , mlces_df )
+dbGetQuery( con , 'SELECT AVG( totpdchg ) FROM mlces' )
+
+dbGetQuery(
+	con ,
+	'SELECT
+		claimant_relationship_to_policyholder ,
+		AVG( totpdchg )
+	FROM
+		mlces
+	GROUP BY
+		claimant_relationship_to_policyholder'
+)
 # $0 deductible
 stopifnot( nrow( mlces_df ) == 1591738 )
 
