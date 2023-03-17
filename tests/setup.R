@@ -88,6 +88,11 @@ mlces_tbl %>%
 mlces_tbl %>%
 	group_by( claimant_relationship_to_policyholder ) %>%
 	summarize( mean = mean( totpdchg ) )
+library(data.table)
+mlces_dt <- data.table( mlces_df )
+mlces_dt[ , mean( totpdchg ) ]
+
+mlces_dt[ , mean( totpdchg ) , by = claimant_relationship_to_policyholder ]
 # $0 deductible
 stopifnot( nrow( mlces_df ) == 1591738 )
 
