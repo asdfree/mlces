@@ -3,7 +3,7 @@
 # claims distribution
 tf <- tempfile()
 
-this_url <-	"https://www.soa.org/Files/Research/1999.zip"
+this_url <-	"https://www.soa.org/globalassets/assets/files/research/1999.zip"
 
 download.file( this_url , tf , mode = 'wb' )
 
