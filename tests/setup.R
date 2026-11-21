@@ -28,7 +28,6 @@ mlces_df <-
 			
 		ppo_plan = as.numeric( ppo == 'Y' )
 	)
-	
 nrow( mlces_df )
 
 table( mlces_df[ , "claimant_relationship_to_policyholder" ] , useNA = "always" )
